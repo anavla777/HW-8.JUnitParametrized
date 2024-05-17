@@ -18,7 +18,7 @@ public class TwitchWebTest extends TestBase {
     @ParameterizedTest(name ="Twitch Main Page has correct text on {0} language")
     @Tag("WEB")
     @DisplayName("Twitch Main Page has correct text on RU and EN languages")
-    void TwitchMainPageShouldDisplayCorrectText(Language language) {
+    void twitchMainPageShouldDisplayCorrectTextTest(Language language) {
         mainpage
                 .openPage("/")
                 .checkLocalization(language.name(), language.description);
@@ -27,24 +27,24 @@ public class TwitchWebTest extends TestBase {
     @ValueSource(strings = {"Heroes of Might and Magic III: The Restoration of Erathia", "League of Legends", "Fortnite"})
     @ParameterizedTest(name="Selected category should have {0} name")
     @DisplayName("Selected category should have correct category name")
-    public void CategoryPageShouldDisplayCorrectText(String category) {
+    public void categoryPageShouldDisplayCorrectTextTest(String category) {
         mainpage
                 .openPage("/directory")
                 .findCategory(category)
                 .verifyCategory(category);
     }
 
-    @MethodSource("streamerShouldHaveCorrectNicknameAndVideoPlayer")
+    @MethodSource("streamerShouldHaveCorrectNicknameAndVideoPlayerTest")
     @ParameterizedTest(name="Streamer {0} should have correct name and video player")
     @DisplayName("Streamer should have correct name and video player")
-    public void streamerShouldHaveCorrectNicknameAndVideoPlayer(String streamer) {
+    public void streamerShouldHaveCorrectNicknameAndVideoPlayerTest(String streamer) {
         mainpage
                 .openPage("/")
                 .findStreamer(streamer)
                 .verifyStreamer(streamer);
     }
 
-    static Stream<Arguments> streamerShouldHaveCorrectNicknameAndVideoPlayer(){
+    static Stream<Arguments> streamerShouldHaveCorrectNicknameAndVideoPlayerTest(){
         return Stream.of(
                 Arguments.of("Anakq"),
                 Arguments.of("shroud"),
